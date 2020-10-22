@@ -24,6 +24,17 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GdprComponent } from './pages/gdpr/gdpr.component';
 import { TradingViewComponent } from './components/trading-view/trading-view.component';
+import { NewsComponent } from './pages/news/news.component';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { FavoritesTableComponent } from './components/favorites-table/favorites-table.component';
+import { TopGainersTableComponent } from './components/top-gainers-table/top-gainers-table.component';
+import { TopLosersTableComponent } from './components/top-losers-table/top-losers-table.component';
+import { SectorOverviewTableComponent } from './components/sector-overview-table/sector-overview-table.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +48,14 @@ import { TradingViewComponent } from './components/trading-view/trading-view.com
     SignInComponent,
     FooterComponent,
     GdprComponent,
-    TradingViewComponent
+    TradingViewComponent,
+    NewsComponent,
+    FavoritesTableComponent,
+    TopGainersTableComponent,
+    TopLosersTableComponent,
+    SectorOverviewTableComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -52,7 +70,11 @@ import { TradingViewComponent } from './components/trading-view/trading-view.com
     MatGridListModule,
     MatDialogModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTooltipModule
 
   ],
   exports: [ MatFormFieldModule, MatInputModule ],

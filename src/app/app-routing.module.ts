@@ -7,6 +7,7 @@ import { TickerInfoComponent } from './pages/ticker-info/ticker-info.component';
 import { TermsOfServiceComponent } from './pages/terms-of-service/terms-of-service.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { GdprComponent } from './pages/gdpr/gdpr.component';
+import { NewsComponent } from './pages/news/news.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'landing-page', pathMatch: 'full'},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'ticker-info', component: TickerInfoComponent},
+  {path: 'news', component: NewsComponent},
   {path: 'terms-of-service', component: TermsOfServiceComponent},
   {path: 'privacy-policy', component: PrivacyPolicyComponent},
   {path: 'gdpr', component: GdprComponent},

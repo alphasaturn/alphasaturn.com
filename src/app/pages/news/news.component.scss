@@ -1,0 +1,23 @@
+.mat-card {
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  position: relative;
+  padding: 8px 0;
+  border-radius: 4px;
+
+}
+
+
+.mat-card-header{
+  background-color:#f3f3f3 !important;
+  padding:5px 0 !important;
+  border-bottom: 1px solid #e7e7eb;
+}
+
+
+
+.mat-card div{
+  padding:0 12px !important;
+}
+
+
