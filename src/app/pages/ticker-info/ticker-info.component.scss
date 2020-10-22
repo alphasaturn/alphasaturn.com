@@ -1,0 +1,75 @@
+.top-of-chart-row mat-card {
+  margin:0 10px 10px 10px;
+}
+
+.top-of-chart-row mat-card:first-child {
+  margin-left:0;
+}
+
+.top-of-chart-row mat-card:last-child {
+  margin-right:0;
+}
+
+.column-alpha {
+  .green-badge {
+    padding: 0 4px;
+    color: #47B877;
+    background-color: #EBF9F2;
+    border-radius: 6px;
+    margin-left: 10px;
+  }
+  .red-badge {
+    padding: 0 4px;
+    color: #DC3854;
+    background-color: #FEE6E8;
+    border-radius: 6px;
+    margin-left: 10px;
+  }
+}
+
+.green-badge {
+  padding: 3px 8px;
+  color: #47B877;
+  background-color: #EBF9F2;
+  border-radius: 6px;
+  margin-left: 10px;
+}
+
+.green-text {
+  color: #47B877;
+}
+
+.red-badge {
+  padding: 3px 8px;
+  color: #DC3854;
+  background-color: #FEE6E8;
+  border-radius: 6px;
+  margin-left: 10px;
+}
+
+.red-text {
+  color: #DC3854;
+}
+
+.mat-card {
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  position: relative;
+  padding: 8px 0;
+  border-radius: 4px;
+}
+
+
+.mat-card-header{
+  background-color:#f3f3f3 !important;
+  padding:5px 0 !important;
+  border-bottom: 1px solid #e7e7eb;
+}
+
+
+
+.mat-card div{
+  padding:0 12px !important;
+}
+
+

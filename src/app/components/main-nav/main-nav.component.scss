@@ -1,0 +1,18 @@
+.example-form-field {
+  width: 200px;
+}
+
+.search-ticker {
+  border-radius: 4px;
+  background-color: rgba(255,255,255,.2);
+  border: none;
+  width: 220px;
+  color: #ffffff;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+input:focus {
+  outline-offset: 0px;
+  outline: -webkit-focus-ring-color auto 0px;
+}
