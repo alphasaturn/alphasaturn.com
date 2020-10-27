@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { HomeComponent } from './pages/home/home.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -40,7 +40,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   declarations: [
     AppComponent,
     MainNavComponent,
-    LandingPageComponent,
+    HomeComponent,
     TermsOfServiceComponent,
     PrivacyPolicyComponent,
     SignUpComponent,

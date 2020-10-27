@@ -1,6 +1,8 @@
-# AlphaSaturnWebsite
+# alphasaturn.com
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
+Alpha Saturn is an experimental micro-hedge fund that creates investment strategies using machine learning, technical, and data analysis.
+
+This repo serves as the repository to hold the code for our public-facing website, as well as an anchor point for tickets and project management.
 
 ## Development server
 
