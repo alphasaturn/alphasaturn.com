@@ -34,6 +34,7 @@ import { TopGainersTableComponent } from './components/top-gainers-table/top-gai
 import { TopLosersTableComponent } from './components/top-losers-table/top-losers-table.component';
 import { SectorOverviewTableComponent } from './components/sector-overview-table/sector-overview-table.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatChipsModule
 
   ],
   exports: [ MatFormFieldModule, MatInputModule ],
