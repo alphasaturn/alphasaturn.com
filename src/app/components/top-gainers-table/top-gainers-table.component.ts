@@ -7,16 +7,16 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {company: 'FB', marketCap: 1.0079, price: 277.88, change: 0.83},
-  {company: 'AMZN', marketCap: 4.0026, price: 3158.68, change: 0.83},
-  {company: 'GOOG', marketCap: 6.941, price: 115.21, change: 0.83},
-  {company: 'AAPL', marketCap: 9.0122, price: 2312.12, change: -0.83},
-  {company: 'MSFT', marketCap: 10.811, price: 115.21, change: 0.83},
-  {company: 'TSLA', marketCap: 12.0107, price: 115.21, change: 0.83},
-  {company: 'INTC', marketCap: 14.0067, price: 115.21, change: 0.83},
-  {company: 'AMD', marketCap: 15.9994, price: 115.21, change: 0.83},
-  {company: 'F', marketCap: 18.9984, price: 115.21, change: 0.83},
-  {company: 'GE', marketCap: 20.1797, price: 115.21, change: 0.83},
+  {company: 'APVO', marketCap: 37.06, price: 11.23, change: 78.25},
+  {company: 'ALSK', marketCap: 164.89, price: 1.13, change: 59.16},
+  {company: 'BBGI', marketCap: 48.67, price: 1.17, change: 37.10},
+  {company: 'INSP', marketCap: 4.46, price: 160.50, change: 31.83},
+  {company: 'ESGC', marketCap: 419.19, price: 2.09, change: 27.44},
+  {company: 'GCI', marketCap: 220.02, price: 1.45, change: 27.19},
+  {company: 'IEA', marketCap: 207.35, price: 8.88, change: 24.72},
+  {company: 'MDLY', marketCap: 226.14, price: 6.45, change: 24.28},
+  {company: 'REV', marketCap: 313.14, price: 5.201, change: 23.81},
+  {company: 'RIDE', marketCap: 632.08, price: 15.99, change: 22.34},
 ];
 @Component({
   selector: 'app-top-gainers-table',

@@ -7,16 +7,16 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {company: 'FB', marketCap: 1.0079, price: 277.88, change: 0.83},
-  {company: 'AMZN', marketCap: 4.0026, price: 3158.68, change: 0.83},
-  {company: 'GOOG', marketCap: 6.941, price: 115.21, change: 0.83},
-  {company: 'AAPL', marketCap: 9.0122, price: 2312.12, change: -0.83},
-  {company: 'MSFT', marketCap: 10.811, price: 115.21, change: 0.83},
-  {company: 'TSLA', marketCap: 12.0107, price: 115.21, change: 0.83},
-  {company: 'INTC', marketCap: 14.0067, price: 115.21, change: 0.83},
-  {company: 'AMD', marketCap: 15.9994, price: 115.21, change: 0.83},
-  {company: 'F', marketCap: 18.9984, price: 115.21, change: 0.83},
-  {company: 'GE', marketCap: 20.1797, price: 115.21, change: 0.83},
+  {company: 'ATIF', marketCap: 36.16, price: .76, change: -41.73},
+  {company: 'SEDG', marketCap: 10.84, price: 206.37, change: -22.92},
+  {company: 'OSPN', marketCap: 775.14, price: 18.20, change: -19.15},
+  {company: 'GHL', marketCap: 199.48, price: 10.56, change: -19.14},
+  {company: 'IPI', marketCap: 125.49, price: 9.18, change: -17.59},
+  {company: 'AIRI', marketCap: 25.74, price: 1.08, change: -17.31},
+  {company: 'AMBO', marketCap: 53.22, price: 2.20, change: -16.98},
+  {company: 'ESPR', marketCap: 704.70, price: 24.20, change: -16.52},
+  {company: 'AIV', marketCap: 3.88, price: 26.96, change: -16.06},
+  {company: 'BBW', marketCap: 47.40, price: 3.78, change: -14.67},
 ];
 @Component({
   selector: 'app-top-losers-table',
