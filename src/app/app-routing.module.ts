@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'ticker-info', component: TickerInfoComponent},
+  {path: 'ticker/:ticker', component: TickerInfoComponent},
   {path: 'news', component: NewsComponent},
   {path: 'terms-of-service', component: TermsOfServiceComponent},
   {path: 'privacy-policy', component: PrivacyPolicyComponent},

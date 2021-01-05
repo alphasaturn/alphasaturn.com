@@ -35,7 +35,9 @@ import { TopLosersTableComponent } from './components/top-losers-table/top-loser
 import { SectorOverviewTableComponent } from './components/sector-overview-table/sector-overview-table.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
-
+import { environment } from 'src/environments/environment';
+import { ApiModule } from './generated/api.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -76,8 +78,9 @@ import { MatChipsModule } from '@angular/material/chips';
     MatPaginatorModule,
     MatSortModule,
     MatTooltipModule,
-    MatChipsModule
-
+    MatChipsModule,
+    HttpClientModule,
+    ApiModule.forRoot({rootUrl: environment.rootApi}),
   ],
   exports: [ MatFormFieldModule, MatInputModule ],
   providers: [],

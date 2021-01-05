@@ -323,7 +323,7 @@
         <mat-card><div class="d-flex align-items-center">5 year<span class="green-badge"><mat-icon>arrow_drop_up</mat-icon>%100</span></div></mat-card>
         <mat-card><div class="d-flex align-items-center">All Time<span class="green-badge"><mat-icon>arrow_drop_up</mat-icon>%100</span></div></mat-card>
       </div>
-      <app-trading-view></app-trading-view>
+      <app-trading-view *ngIf="ticker" [ticker]="ticker"></app-trading-view>
     </div>
   </div>
   <div class="d-flex">
