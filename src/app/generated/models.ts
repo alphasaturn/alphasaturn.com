@@ -10,6 +10,8 @@ export { TickerDetailsFinancialsAsReportedReportData } from './models/ticker-det
 export { TickerDetailsFinancialsAsReportedReport } from './models/ticker-details-financials-as-reported-report';
 export { TickerDetailsFinancialsAsReportedData } from './models/ticker-details-financials-as-reported-data';
 export { TickerDetailsFinancialsAsReported } from './models/ticker-details-financials-as-reported';
+export { TickerDetailsRealPrice } from './models/ticker-details-real-price';
+export { TickerDetailsAnalystPrice } from './models/ticker-details-analyst-price';
 export { TickerDetailsResponse } from './models/ticker-details-response';
 export { PageRequest } from './models/page-request';
 export { PrNewswireNewsDetails } from './models/pr-newswire-news-details';
