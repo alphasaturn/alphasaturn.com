@@ -40,6 +40,7 @@ import { ApiModule } from './generated/api.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PrnewswireComponent } from './pages/prnewswire/prnewswire.component';
+import { NumberSuffixPipe } from './lib/numberSuffix.pipe';
 
 @NgModule({
   declarations: [
@@ -60,8 +61,7 @@ import { PrnewswireComponent } from './pages/prnewswire/prnewswire.component';
     TopLosersTableComponent,
     SectorOverviewTableComponent,
     PrnewswireComponent,
-
-
+    NumberSuffixPipe,
   ],
   imports: [
     BrowserModule,
