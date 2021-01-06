@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -41,7 +42,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PrnewswireComponent } from './pages/prnewswire/prnewswire.component';
 import { NumberSuffixPipe } from './lib/numberSuffix.pipe';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,6 +82,7 @@ import { NumberSuffixPipe } from './lib/numberSuffix.pipe';
     MatSortModule,
     MatTooltipModule,
     MatChipsModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     FormsModule,
     ApiModule.forRoot({rootUrl: environment.rootApi}),
