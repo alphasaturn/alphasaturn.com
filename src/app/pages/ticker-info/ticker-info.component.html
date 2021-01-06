@@ -11,7 +11,7 @@
       <h4>{{tickerInfo.companyInfo.exchange}} > {{tickerInfo.companyInfo.sector}}</h4>
 
     </div>
-    <h2 class="mat-display-1 mb-2">Sentiment Score |
+    <h2 class="mat-display-1 mb-2">Company Score |
       <div style="display:inline; font-weight: 700;" class="primary-text">
         {{(tickerInfo.companySentiment.companyNewsScore * 100).toFixed(2)}}
       </div>
@@ -31,15 +31,15 @@
               <strong class=" mat-headline mb-0">${{tickerInfo.tickerRealPrice.c}}
                 <span style="font-size:16px;" [ngClass]="{'green-text': tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc > 0, 'red-text': tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc < 0}">
                   <span *ngIf="tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc > 0">+</span>
-                  <span *ngIf="tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc < 0">-</span>
                   {{(tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc).toFixed(2)}}</span>
               </strong>
               <!--<small style="color:#89898A;">{{tickerInfo.tickerRealPrice.t | date}}</small>-->
             </div>
-            <span class="green-badge align-items-center d-flex" style="font-size: 18px;">
+            <span class="align-items-center d-flex" [ngClass]="{'green-badge': (tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc) / tickerInfo.tickerRealPrice.pc > 0, 'red-badge': (tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc) / tickerInfo.tickerRealPrice.pc < 0}" style="font-size: 18px;">
               <strong>
                 <mat-icon *ngIf="(tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc) / tickerInfo.tickerRealPrice.pc > 0">arrow_drop_up</mat-icon>
                 <mat-icon *ngIf="(tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc) / tickerInfo.tickerRealPrice.pc < 0">arrow_drop_down</mat-icon>
+                <span *ngIf="tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc > 0">+</span>
                 {{((tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc) / tickerInfo.tickerRealPrice.pc * 100).toFixed(2)}}%
               </strong></span>
           </div>
@@ -47,7 +47,7 @@
         <!--TODO: Only show After hours trading info below... after the market closes-->
         <mat-card class="mb-2 mr-2 pt-0 flex-fill">
           <mat-card-header class="mb-2">
-            <mat-card-subtitle class="mt-1 mb-1">Analyst Mean Price</mat-card-subtitle>
+            <mat-card-subtitle class="mt-1 mb-1">Analyst Average Price</mat-card-subtitle>
           </mat-card-header>
           <div class="d-flex mb-1">
             <div class="d-flex flex-column mr-auto">
@@ -68,75 +68,80 @@
           <mat-card class="mb-2 mr-2 flex-fill ">
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Assets</strong>
-              <span class="green-badge">${{companyFinances.assets | numberSuffix}}</span>
+              <span>{{companyFinances.assets | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Accounts Payable</strong>
-              <span class="green-badge">${{companyFinances.accountsPayable | numberSuffix}}</span>
+              <span>{{companyFinances.accountsPayable | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
               <strong class="mr-auto">Cash</strong>
-              <span class="green-badge">${{companyFinances.cash | numberSuffix}}</span>
+              <span>{{companyFinances.cash | numberSuffix}}</span>
             </div>
+            <div class="d-flex align-items-center">
+                <strong class="mr-auto">Cash and Cash Equivalents</strong>
+                <span>{{companyFinances.cashAndCashEquivalentsAtCarryingValue | numberSuffix}}</span>
+              </div>
+            
           </mat-card>
           <mat-card class="mb-2 mr-2">
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Accounts Receivable</strong>
-              <span class="green-badge">${{companyFinances.accountsReceivable | numberSuffix}}</span>
+              <span>{{companyFinances.accountsReceivable | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Net Income</strong>
-              <span class="green-badge">${{companyFinances.netIncome | numberSuffix}}</span>
+              <span>{{companyFinances.netIncome | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Retained Earnings</strong>
-              <span class="green-text">${{companyFinances.retainedEarnings | numberSuffix}}</span>
+              <span>{{companyFinances.retainedEarnings | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
               <strong class="mr-auto">Stock Holders Equity</strong>
-              <span class="">${{companyFinances.stockholdersEquity | numberSuffix }}</span>
+              <span class="">{{companyFinances.stockholdersEquity | numberSuffix }}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2">
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Marketable Securities</strong>
-              <span class="">${{companyFinances.marketableSecurities | numberSuffix }}</span>
+              <span class="">{{companyFinances.marketableSecurities | numberSuffix }}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Net Inventory</strong>
-              <span class="">${{companyFinances.inventoryNet | numberSuffix}}</span>
+              <span class="">{{companyFinances.inventoryNet | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Non-Trade Receivables</strong>
-              <span class="">${{companyFinances.nontradeReceivablesCurrent | numberSuffix}}</span>
+              <span class="">{{companyFinances.nontradeReceivablesCurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Other Assets</strong>
-              <span class="">${{companyFinances.otherAssetsCurrent | numberSuffix}}</span>
+              <span class="">{{companyFinances.otherAssetsCurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Marketable Securities Non-Current</strong>
-              <span class="">${{companyFinances.marketableSecuritiesNoncurrent | numberSuffix}}</span>
+              <span class="">{{companyFinances.marketableSecuritiesNoncurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Property Plant And Equipment</strong>
-              <span class="">${{companyFinances.propertyPlantAndEquipmentNet | numberSuffix}}</span>
+              <span class="">{{companyFinances.propertyPlantAndEquipmentNet | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Other Assets Non-Current</strong>
-              <span class="">${{companyFinances.otherAssetsNoncurrent | numberSuffix}}</span>
+              <span class="">{{companyFinances.otherAssetsNoncurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Total Non-Current Assets</strong>
-              <span class="">${{companyFinances.assetsNoncurrent | numberSuffix}}</span>
+              <span class="">{{companyFinances.assetsNoncurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Other Current Liabilities</strong>
-              <span class="">${{companyFinances.otherLiabilitiesCurrent | numberSuffix}}</span>
+              <span class="">{{companyFinances.otherLiabilitiesCurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
               <strong class="mr-auto">Deferred Revenue</strong>
-              <span class="">${{companyFinances.contractWithCustomerLiabilityCurrent | numberSuffix}}</span>
+              <span class="">{{companyFinances.contractWithCustomerLiabilityCurrent | numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2">
@@ -152,63 +157,63 @@
           <mat-card class="mb-2 mr-2 flex-fill">
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Commercial Paper</strong>
-              <span class="">${{companyFinances.commercialPaper | numberSuffix}}</span>
+              <span class="">{{companyFinances.commercialPaper | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Term Debt</strong>
-              <span class="">${{companyFinances.longTermDebtCurrent | numberSuffix}}</span>
+              <span class="">{{companyFinances.longTermDebtCurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Total Current Liabilities</strong>
-              <span class="">${{companyFinances.liabilitiesCurrent | numberSuffix}}</span>
+              <span class="">{{companyFinances.liabilitiesCurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
               <strong class="mr-auto">Long Term Debt Non-Current</strong>
-              <span class="">${{companyFinances.longTermDebtNoncurrent | numberSuffix}}</span>
+              <span class="">{{companyFinances.longTermDebtNoncurrent | numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2 flex-fill">
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Other Liabilities Non-Current</strong>
-              <span class="">${{companyFinances.otherLiabilitiesNoncurrent | numberSuffix}}</span>
+              <span class="">{{companyFinances.otherLiabilitiesNoncurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
               <strong class="mr-auto">Total Non-Current Liabilities</strong>
-              <span class="">${{companyFinances.liabilitiesNoncurrent| numberSuffix}}</span>
+              <span class="">{{companyFinances.liabilitiesNoncurrent| numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2 flex-fill">
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Commitments And Contingencies</strong>
-              <span class="">${{companyFinances.commitmentsAndContingencies | numberSuffix}}</span>
+              <span class="">{{companyFinances.commitmentsAndContingencies | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
               <strong class="mr-auto">Retained Earnings</strong>
-              <span class="">${{companyFinances.retainedEarningsAccumulatedDeficit | numberSuffix}}</span>
+              <span class="">{{companyFinances.retainedEarningsAccumulatedDeficit | numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2 flex-fill">
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Depreciation And Amortization</strong>
-              <span class="">${{companyFinances.depreciationDepletionAndAmortization | numberSuffix}}</span>
+              <span class="">{{companyFinances.depreciationDepletionAndAmortization | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Deferred Income Tax Benefit</strong>
-              <span class="">${{companyFinances.deferredIncomeTaxExpenseBenefit | numberSuffix}}</span>
+              <span class="">{{companyFinances.deferredIncomeTaxExpenseBenefit | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Other Non-Cash Income Expense</strong>
-              <span class="">${{companyFinances.otherNoncashIncomeExpense | numberSuffix}}</span>
+              <span class="">{{companyFinances.otherNoncashIncomeExpense | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
               <strong class="mr-auto">Cash Generated By Operating Activities</strong>
-              <span class="">${{companyFinances.netCashProvidedByUsedInOperatingActivities | numberSuffix}}</span>
+              <span class="">{{companyFinances.netCashProvidedByUsedInOperatingActivities | numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2 flex-fill">
             <div class="d-flex mb-1 align-items-center">
               <strong class="mr-auto">Investing Activities</strong>
-              <span class="">${{companyFinances.netCashProvidedByUsedInInvestingActivities | numberSuffix}}</span>
+              <span class="">{{companyFinances.netCashProvidedByUsedInInvestingActivities | numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2 flex-fill">
