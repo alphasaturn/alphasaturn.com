@@ -18,6 +18,8 @@ export class NewsComponent implements OnInit {
     sources: string[] = [];
     selectedSource: string;
     searchQuery: string;
+    page: number = 1;
+    loadingMore: boolean = false;
 
     constructor(private newsService: NewsService, private sanitizer: DomSanitizer, private router: Router, private activatedRoute: ActivatedRoute) {
 
@@ -25,7 +27,7 @@ export class NewsComponent implements OnInit {
             if (query && query.q) {
                 this.searchQuery = query.q;
             }
-            await this.getNews(null, this.searchQuery);
+            await this.getNews(null, this.searchQuery, this.page);
         });
     }
 
@@ -36,7 +38,8 @@ export class NewsComponent implements OnInit {
 
     async selectSource(source: string): Promise<void> {
         this.selectedSource = source;
-        await this.getNews(this.selectedSource, this.searchQuery);
+        this.page = 1;
+        await this.getNews(this.selectedSource, this.searchQuery, this.page);
     }
 
     checkUrl(url: string, releaseId: string): string {
@@ -55,10 +58,14 @@ export class NewsComponent implements OnInit {
         }
     }
 
-    async getNews(source?: string, query?: string): Promise<void> {
+    async getNews(source?: string, query?: string, page?: number): Promise<void> {
         try {
-            const news = await this.newsService.newsControllerGetLatestNewsForWebsite({source, query}).toPromise();
-            this.news = news;
+            const news = await this.newsService.newsControllerGetLatestNewsForWebsite({source, query, page}).toPromise();
+            if (this.page === 1) {
+                this.news = news;
+            } else {
+                this.news.push(...news);
+            }
             // console.log(this.news);
         } catch (error) {
             console.log(error);
@@ -74,6 +81,17 @@ export class NewsComponent implements OnInit {
             // console.log(gainers, losers);
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    async loadMoreNews() {
+        try {
+            this.loadingMore = true;
+            this.page = this.page + 1;
+            await this.getNews(this.selectedSource, this.searchQuery, this.page);
+            this.loadingMore = false;
+        } catch (error) {
+            this.loadingMore = false;
         }
     }
 

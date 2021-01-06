@@ -39,12 +39,14 @@ export class NewsService extends BaseService {
   newsControllerGetLatestNewsForWebsite$Response(params?: {
     source?: string;
     query?: string;
+    page?: number;
   }): Observable<StrictHttpResponse<Array<News>>> {
 
     const rb = new RequestBuilder(this.rootUrl, NewsService.NewsControllerGetLatestNewsForWebsitePath, 'get');
     if (params) {
       rb.query('source', params.source, {});
       rb.query('query', params.query, {});
+      rb.query('page', params.page, {});
     }
 
     return this.http.request(rb.build({
@@ -67,6 +69,7 @@ export class NewsService extends BaseService {
   newsControllerGetLatestNewsForWebsite(params?: {
     source?: string;
     query?: string;
+    page?: number;
   }): Observable<Array<News>> {
 
     return this.newsControllerGetLatestNewsForWebsite$Response(params).pipe(

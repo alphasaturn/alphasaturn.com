@@ -37,6 +37,16 @@
                     </a>
                 </div>
             </div>
+            <div class="load-more">
+                <button mat-flat-button color="primary" (click)="loadMoreNews()" [disabled]="loadingMore">
+                    <ng-container *ngIf="loadingMore">
+                        Loading...
+                    </ng-container>
+                    <ng-container *ngIf="!loadingMore">
+                        Load More News
+                    </ng-container>
+                </button>
+            </div>
         </div>
 
         <div class="d-flex flex-grow-1 ml-5">
