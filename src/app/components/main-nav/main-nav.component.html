@@ -4,7 +4,7 @@
     <span class="ml-2 mr-5" style="color:#fff;"> Alpha Saturn</span>
   </a>
 
-  <input class="mr-auto pl-3 pr-4 search-ticker" placeholder="Search for tickers... " type="text">
+  <input class="mr-auto pl-3 pr-4 search-ticker" placeholder="Search for news... " type="text" [(ngModel)]="newsSearch" (keyup.enter)="submitToNews()">
   <!-- <button class="mr-3" mat-button color="accent" routerLink="/sign-in">Sign In</button> -->
   <button mat-raised-button color="primary" routerLink="/news">Go To News</button>
 </mat-toolbar>

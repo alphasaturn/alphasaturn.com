@@ -9,6 +9,7 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { FinvizGainersLosers } from '../models/finviz-gainers-losers';
 import { News } from '../models/news';
 import { PageRequest } from '../models/page-request';
 import { TickerDetailsResponse } from '../models/ticker-details-response';
@@ -37,11 +38,13 @@ export class NewsService extends BaseService {
    */
   newsControllerGetLatestNewsForWebsite$Response(params?: {
     source?: string;
+    query?: string;
   }): Observable<StrictHttpResponse<Array<News>>> {
 
     const rb = new RequestBuilder(this.rootUrl, NewsService.NewsControllerGetLatestNewsForWebsitePath, 'get');
     if (params) {
       rb.query('source', params.source, {});
+      rb.query('query', params.query, {});
     }
 
     return this.http.request(rb.build({
@@ -63,10 +66,97 @@ export class NewsService extends BaseService {
    */
   newsControllerGetLatestNewsForWebsite(params?: {
     source?: string;
+    query?: string;
   }): Observable<Array<News>> {
 
     return this.newsControllerGetLatestNewsForWebsite$Response(params).pipe(
       map((r: StrictHttpResponse<Array<News>>) => r.body as Array<News>)
+    );
+  }
+
+  /**
+   * Path part for operation newsControllerGetLatestGainersAndLosersForWebsite
+   */
+  static readonly NewsControllerGetLatestGainersAndLosersForWebsitePath = '/api/news/website/gainers-losers';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `newsControllerGetLatestGainersAndLosersForWebsite()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  newsControllerGetLatestGainersAndLosersForWebsite$Response(params?: {
+  }): Observable<StrictHttpResponse<FinvizGainersLosers>> {
+
+    const rb = new RequestBuilder(this.rootUrl, NewsService.NewsControllerGetLatestGainersAndLosersForWebsitePath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<FinvizGainersLosers>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `newsControllerGetLatestGainersAndLosersForWebsite$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  newsControllerGetLatestGainersAndLosersForWebsite(params?: {
+  }): Observable<FinvizGainersLosers> {
+
+    return this.newsControllerGetLatestGainersAndLosersForWebsite$Response(params).pipe(
+      map((r: StrictHttpResponse<FinvizGainersLosers>) => r.body as FinvizGainersLosers)
+    );
+  }
+
+  /**
+   * Path part for operation newsControllerGetSourcesForWebsite
+   */
+  static readonly NewsControllerGetSourcesForWebsitePath = '/api/news/website/sources';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `newsControllerGetSourcesForWebsite()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  newsControllerGetSourcesForWebsite$Response(params?: {
+  }): Observable<StrictHttpResponse<Array<string>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, NewsService.NewsControllerGetSourcesForWebsitePath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<string>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `newsControllerGetSourcesForWebsite$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  newsControllerGetSourcesForWebsite(params?: {
+  }): Observable<Array<string>> {
+
+    return this.newsControllerGetSourcesForWebsite$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<string>>) => r.body as Array<string>)
     );
   }
 

@@ -1,0 +1,5 @@
+<div class="px-5 pt-4 pb-5 mat-app-background">
+    <h1>{{release.title}}</h1>
+    <a *ngFor="let ticker of release.ticker" [routerLink]="['/ticker/' + parseTicker(ticker)]">{{ticker}}</a>
+    <div [innerHTML]="sanitize(release.body)"></div>
+</div>

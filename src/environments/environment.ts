@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  rootApi: 'http://db.alphasaturn.com:7776',
+  rootApi: 'http://localhost:3000',
 };
 
 /*

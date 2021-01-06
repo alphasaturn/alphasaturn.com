@@ -11,6 +11,7 @@ import { map, filter } from 'rxjs/operators';
 
 import { PrNewswireNewsDetails } from '../models/pr-newswire-news-details';
 import { PrNewswireFilter } from '../models/pr-newswire-filter';
+import { PrNewswireRelease } from '../models/pr-newswire-release';
 
 @Injectable({
   providedIn: 'root',
@@ -219,6 +220,52 @@ export class PrnewswireService extends BaseService {
 
     return this.prNewswirecontrollerPrNewswireGetFilters$Response(params).pipe(
       map((r: StrictHttpResponse<PrNewswireFilter>) => r.body as PrNewswireFilter)
+    );
+  }
+
+  /**
+   * Path part for operation prNewswirecontrollerPrNewswireGetRelease
+   */
+  static readonly PrNewswirecontrollerPrNewswireGetReleasePath = '/api/prnewswire/release/{releaseId}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `prNewswirecontrollerPrNewswireGetRelease()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  prNewswirecontrollerPrNewswireGetRelease$Response(params: {
+    releaseId: string;
+  }): Observable<StrictHttpResponse<PrNewswireRelease>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PrnewswireService.PrNewswirecontrollerPrNewswireGetReleasePath, 'get');
+    if (params) {
+      rb.path('releaseId', params.releaseId, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<PrNewswireRelease>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `prNewswirecontrollerPrNewswireGetRelease$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  prNewswirecontrollerPrNewswireGetRelease(params: {
+    releaseId: string;
+  }): Observable<PrNewswireRelease> {
+
+    return this.prNewswirecontrollerPrNewswireGetRelease$Response(params).pipe(
+      map((r: StrictHttpResponse<PrNewswireRelease>) => r.body as PrNewswireRelease)
     );
   }
 

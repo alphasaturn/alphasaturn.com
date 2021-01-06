@@ -8,12 +8,14 @@ import { TermsOfServiceComponent } from './pages/terms-of-service/terms-of-servi
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { GdprComponent } from './pages/gdpr/gdpr.component';
 import { NewsComponent } from './pages/news/news.component';
+import { PrnewswireComponent } from './pages/prnewswire/prnewswire.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'ticker/:ticker', component: TickerInfoComponent},
+  {path: 'prnewswire/:releaseId', component: PrnewswireComponent},
   {path: 'news', component: NewsComponent},
   {path: 'terms-of-service', component: TermsOfServiceComponent},
   {path: 'privacy-policy', component: PrivacyPolicyComponent},

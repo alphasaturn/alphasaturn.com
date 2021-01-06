@@ -38,6 +38,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { environment } from 'src/environments/environment';
 import { ApiModule } from './generated/api.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { PrnewswireComponent } from './pages/prnewswire/prnewswire.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { HttpClientModule } from '@angular/common/http';
     TopGainersTableComponent,
     TopLosersTableComponent,
     SectorOverviewTableComponent,
+    PrnewswireComponent,
 
 
   ],
@@ -80,6 +83,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTooltipModule,
     MatChipsModule,
     HttpClientModule,
+    FormsModule,
     ApiModule.forRoot({rootUrl: environment.rootApi}),
   ],
   exports: [ MatFormFieldModule, MatInputModule ],

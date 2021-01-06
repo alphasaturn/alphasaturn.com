@@ -1,4 +1,6 @@
 export { News } from './models/news';
+export { Finviz } from './models/finviz';
+export { FinvizGainersLosers } from './models/finviz-gainers-losers';
 export { TickerDetailsCompanyInfo } from './models/ticker-details-company-info';
 export { TickerDetailsOtherTickerNews } from './models/ticker-details-other-ticker-news';
 export { TickerDetailsFinviz } from './models/ticker-details-finviz';
@@ -16,4 +18,5 @@ export { TickerDetailsResponse } from './models/ticker-details-response';
 export { PageRequest } from './models/page-request';
 export { PrNewswireNewsDetails } from './models/pr-newswire-news-details';
 export { PrNewswireFilter } from './models/pr-newswire-filter';
-export { Finviz } from './models/finviz';
+export { PrNewswireReleaseMultiMedia } from './models/pr-newswire-release-multi-media';
+export { PrNewswireRelease } from './models/pr-newswire-release';
