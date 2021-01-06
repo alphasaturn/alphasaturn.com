@@ -19,7 +19,7 @@ export interface TickerDetailsCompanyInfo {
   listdate: string;
   logo: string;
   marketcap: number;
-  namme: string;
+  name: string;
   phone: string;
   sector: string;
   sic: string;

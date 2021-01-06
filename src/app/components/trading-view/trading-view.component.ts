@@ -21,7 +21,7 @@ export class TradingViewComponent implements OnInit, AfterViewInit {
         s.innerHTML = `
             new TradingView.widget(
                 {
-                // "width": 980,
+                // "width": 1200,
                 // "height": 610,
                 autosize: true,
                 "symbol": '${this.ticker}',

@@ -38,6 +38,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { environment } from 'src/environments/environment';
 import { ApiModule } from './generated/api.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NumberSuffixPipe } from './lib/numberSuffix.pipe';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { HttpClientModule } from '@angular/common/http';
     TopGainersTableComponent,
     TopLosersTableComponent,
     SectorOverviewTableComponent,
+    NumberSuffixPipe
 
 
   ],
