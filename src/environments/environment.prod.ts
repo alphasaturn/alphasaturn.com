@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  rootApi: 'http://db.alphasaturn.com:7776/',
+  rootApi: 'https://core.alphasaturn.com',
 };
