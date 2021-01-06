@@ -1,16 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-main-nav',
-  templateUrl: './main-nav.component.html',
-  styleUrls: ['./main-nav.component.scss']
+    selector: 'app-main-nav',
+    templateUrl: './main-nav.component.html',
+    styleUrls: ['./main-nav.component.scss']
 })
 export class MainNavComponent implements OnInit {
-  value = 'Clear me';
+    newsSearch: string = '';
 
-  constructor() {}
+    constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
+
+    submitToNews() {
+        this.router.navigate(['/news'], {queryParams: {q: this.newsSearch}});
+    }
 
 }

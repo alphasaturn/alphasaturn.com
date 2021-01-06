@@ -35,7 +35,12 @@ import { TopLosersTableComponent } from './components/top-losers-table/top-loser
 import { SectorOverviewTableComponent } from './components/sector-overview-table/sector-overview-table.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
-
+import { environment } from 'src/environments/environment';
+import { ApiModule } from './generated/api.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { PrnewswireComponent } from './pages/prnewswire/prnewswire.component';
+import { NumberSuffixPipe } from './lib/numberSuffix.pipe';
 
 @NgModule({
   declarations: [
@@ -55,8 +60,8 @@ import { MatChipsModule } from '@angular/material/chips';
     TopGainersTableComponent,
     TopLosersTableComponent,
     SectorOverviewTableComponent,
-
-
+    PrnewswireComponent,
+    NumberSuffixPipe,
   ],
   imports: [
     BrowserModule,
@@ -76,8 +81,10 @@ import { MatChipsModule } from '@angular/material/chips';
     MatPaginatorModule,
     MatSortModule,
     MatTooltipModule,
-    MatChipsModule
-
+    MatChipsModule,
+    HttpClientModule,
+    FormsModule,
+    ApiModule.forRoot({rootUrl: environment.rootApi}),
   ],
   exports: [ MatFormFieldModule, MatInputModule ],
   providers: [],

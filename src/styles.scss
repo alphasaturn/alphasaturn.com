@@ -748,3 +748,13 @@ app-home {
     background-color: #ffffffe8;
   }
 }
+
+.news-stories {
+  p {
+    margin: 0 !important;
+  }
+
+  .mat-card div {
+    padding: 0 !important;
+  }
+}

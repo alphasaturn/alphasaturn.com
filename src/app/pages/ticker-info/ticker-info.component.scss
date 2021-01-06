@@ -1,5 +1,5 @@
 .top-of-chart-row mat-card {
-  margin:0 10px 10px 10px;
+  margin:0 10px 10px 0;
 }
 
 .top-of-chart-row mat-card:first-child {
@@ -12,6 +12,25 @@
 
 .top-of-chart-row div {
   font-size: 12px;
+}
+
+.top-of-chart-row {
+  .green-badge {
+    padding: 1px 4px 0 0;
+    color: #47B877;
+    background-color: #EBF9F2;
+    border-radius: 6px;
+    margin-left: 10px;
+  }
+
+  .red-badge {
+    padding: 1px 4px 0 0;
+    color: #DC3854;
+    background-color: #FEE6E8;
+    border-radius: 6px;
+    margin-left: 10px;
+  }
+
 }
 
 .column-alpha {
@@ -51,6 +70,14 @@
   margin-left: 10px;
 }
 
+.gray-badge {
+  padding: 3px 8px;
+  color: #bab9ba;
+
+  border-radius: 6px;
+  margin-left: 10px;
+}
+
 .red-text {
   color: #DC3854;
 }
@@ -75,5 +102,6 @@
 .mat-card div{
   padding:0 12px !important;
 }
+
 
 

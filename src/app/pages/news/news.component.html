@@ -1,209 +1,67 @@
 <div class="px-5 pt-4 pb-5 mat-app-background">
-  <div class="d-flex align-items-start">
-    <div class="mr-auto mb-0">
-      <h2 class="mat-display-1 mb-4"><span style="font-weight: 700;">US</span> Markets</h2>
-    </div>
-    <h2 class="mb-2">Markets Open</h2>
-  </div>
-  <div class="d-flex">
-
-    <div class="d-flex flex-column" style="width: 70%;">
-      <h2><mat-icon>text_snippet</mat-icon> Market News</h2>
-      <div class="p-2 d-flex mr-3 align-items-center">
-          <div class="d-flex flex-column mr-3" style="width:15%;">
-            <h3>Business Wire</h3>
-          </div>
-          <div class="d-flex flex-column" style="width:85%;">
-            <div class="d-flex">
-              <a class="mb-0 mr-3 mat-title" style="text-decoration: none;" routerLink="/ticker-info">MYE - Myers Industries, Inc..</a>
-              <mat-chip-list aria-label="Fish selection">
-
-                <mat-chip color="primary" selected>52</mat-chip>
-                <span class="mx-2">|</span>
-                <mat-chip color="" >Consumer Cyclical</mat-chip>
-              </mat-chip-list>
+    <div class="d-flex align-items-start">
+        <div class="mr-auto mb-0">
+            <h2 class="mat-display-1 mb-2"><span style="font-weight: 700;">US</span> Markets</h2>
+            <div class="mb-2">
+                <mat-chip-list>
+                    <mat-chip style="cursor: pointer;" [ngClass]="{'mat-chip-selected': selectedSource === source}" (click)="selectSource(source)" *ngFor="let source of sources">{{source}}</mat-chip>
+                </mat-chip-list>
             </div>
-            <a href="www.google.com" style="text-decoration: none;">
-              <h3 style="font-weight: 700; color:#232323;" class="mb-0">Myers Industries to Present at the Baird 2020 Global Industrial Conference</h3>
-              <span style="color:#232323;">AKRON, Ohio--(BUSINESS WIRE)--Myers Industries to Present at the Baird 2020 Global Industrial Conference on November 12, 2020.</span>
-              <p class="mr-4 mt-0" style="color:#89898A;">11/2/2020  9:15:00 PM </p>
-            </a>
-          </div>
+            
         </div>
-      <div class="p-2 d-flex mr-3 align-items-center">
-        <div class="d-flex flex-column mr-3" style="width:15%;">
-          <h3>BusinessWire</h3>
-        </div>
-        <div class="d-flex flex-column" style="width:85%;">
-          <div class="d-flex">
-            <a class="mb-0 mr-3 mat-title" style="text-decoration: none;" routerLink="/ticker-info">MAT - Mattel, Inc..</a>
-            <mat-chip-list aria-label="Fish selection">
-
-              <mat-chip color="primary" selected>23</mat-chip>
-              <span class="mx-2">|</span>
-              <mat-chip color="" >Consumer Cyclical</mat-chip>
-            </mat-chip-list>
-          </div>
-          <a href="www.google.com" style="text-decoration: none;">
-            <h3 style="font-weight: 700; color:#232323;" class="mb-0">Mattel Leads 2021 ‚ÄòToy of the Year‚Äô Award Finalist List</h3>
-            <span style="color:#232323;">EL SEGUNDO, Calif.--(BUSINESS WIRE)--Mattel, Inc. (NASDAQ: MAT) today announced that the company‚Äôs portfolio of toys has received nine finalist nominations across multiple categories for The Toy Association‚Äôs 2021 Toy of the Year (TOTY) Awards. For the second year in a row, the company leads the industry in finalist nominations, with 2021 nominations including products from American Girl¬Æ, Barbie¬Æ, Cave Club¬Æ, Fisher-Price¬Æ, MEGA¬Æ and licensed toys. In total, more than 55 Mattel toys have been</span>
-            <p class="mr-4 mt-0" style="color:#89898A;">11/3/2020  4:17:32 AM </p>
-          </a>
-        </div>
-      </div>
-      <div class="p-2 d-flex mr-3 align-items-center">
-        <div class="d-flex flex-column mr-3" style="width:15%;">
-          <h3>BusinessWire</h3>
-        </div>
-        <div class="d-flex flex-column" style="width:85%;">
-          <div class="d-flex">
-            <a class="mb-0 mr-3 mat-title" style="text-decoration: none;" routerLink="/ticker-info">ANET - Arista Networks, Inc.</a>
-            <mat-chip-list aria-label="Fish selection">
-
-              <mat-chip color="primary" selected>12</mat-chip>
-              <span class="mx-2">|</span>
-              <mat-chip color="" >Technology</mat-chip>
-            </mat-chip-list>
-          </div>
-          <a href="www.google.com" style="text-decoration: none;">
-            <h3 style="font-weight: 700; color:#232323;" class="mb-0">Arista Networks, Inc. Reports Third Quarter 2020 Financial Results</h3>
-            <span style="color:#232323;">SANTA CLARA, Calif.--(BUSINESS WIRE)--Arista Networks today reported its third quarter 2020 financial results.</span>
-            <p class="mr-4 mt-0" style="color:#89898A;">11/2/20 21:05 </p>
-          </a>
-        </div>
-      </div>
-      <div class="p-2 d-flex mr-3 align-items-center">
-        <div class="d-flex flex-column mr-3" style="width:15%;">
-          <h3>BusinessWire</h3>
-        </div>
-        <div class="d-flex flex-column" style="width:85%;">
-          <div class="d-flex">
-            <a class="mb-0 mr-3 mat-title" style="text-decoration: none;" routerLink="/ticker-info">HMN - Horace Mann Educators Corporation.</a>
-            <mat-chip-list aria-label="Fish selection">
-
-              <mat-chip color="warn" selected>-4</mat-chip>
-              <span class="mx-2">|</span>
-              <mat-chip color="" >Financial</mat-chip>
-            </mat-chip-list>
-          </div>
-          <a href="www.google.com" style="text-decoration: none;">
-            <h3 style="font-weight: 700; color:#232323;" class="mb-0">Horace Mann Reports Third-Quarter 2020 Net Income of $0.87 Per Share and Core Earnings* of $0.82 Per Share</h3>
-            <span style="color:#232323;">SPRINGFIELD, Ill.--(BUSINESS WIRE)--Horace Mann Reports Third-Quarter 2020 Net Income of $0.87 Per Share and Core Earnings* of $0.82 Per Share</span>
-            <p class="mr-4 mt-0" style="color:#89898A;">11/2/20 21:15 </p>
-          </a>
-        </div>
-      </div>
-      <div class="p-2 d-flex mr-3 align-items-center">
-        <div class="d-flex flex-column mr-3" style="width:15%;">
-          <h3>SeekingAlpha-LONG</h3>
-        </div>
-        <div class="d-flex flex-column" style="width:85%;">
-          <div class="d-flex">
-            <a class="mb-0 mr-3 mat-title" style="text-decoration: none;" routerLink="/ticker-info">CLR - Continental Resources, Inc.</a>
-            <mat-chip-list aria-label="Fish selection">
-
-              <mat-chip color="primary" selected>33</mat-chip>
-              <span class="mx-2">|</span>
-              <mat-chip color="" >Energy</mat-chip>
-            </mat-chip-list>
-          </div>
-          <a href="www.google.com" style="text-decoration: none;">
-            <h3 style="font-weight: 700; color:#232323;" class="mb-0">Continental Resources: Able To Handle Sub-$40 Oil Due To Reduced Maintenance Capex Requirements</h3>
-            <span style="color:#232323;"></span>
-            <p class="mr-4 mt-0" style="color:#89898A;">53 Mins Ago </p>
-          </a>
-        </div>
-      </div>
-      <div class="p-2 d-flex mr-3 align-items-center">
-        <div class="d-flex flex-column mr-3" style="width:15%;">
-          <h3>BusinessWire</h3>
-        </div>
-        <div class="d-flex flex-column" style="width:85%;">
-          <div class="d-flex">
-            <a class="mb-0 mr-3 mat-title" style="text-decoration: none;" routerLink="/ticker-info">JPM - JPMorgan Chase & Co.</a>
-            <mat-chip-list aria-label="Fish selection">
-
-              <mat-chip color="warn" selected>-41</mat-chip>
-              <span class="mx-2">|</span>
-              <mat-chip color="" >Financial</mat-chip>
-            </mat-chip-list>
-          </div>
-          <a href="www.google.com" style="text-decoration: none;">
-            <h3 style="font-weight: 700; color:#232323;" class="mb-0">JPMorgan Chase Files Form 10-Q for the Quarter Ended September 30, 2020</h3>
-            <span style="color:#232323;">NEW YORK--(BUSINESS WIRE)--JPMorgan Chase &amp; Co. (NYSE: JPM) (‚ÄúJPMorgan Chase‚Äù or the ‚ÄúFirm‚Äù) has filed its Quarterly Report on Form 10-Q for the quarter ended September 30, 2020 with the SEC. The report is available on the SEC's website at www.sec.gov and will be available on the Firm's Investor Relations website at www.jpmorganchase.com/ir under SEC Filings &amp; Other Disclosures. JPMorgan Chase &amp; Co. (NYSE: JPM) is a leading global financial services firm with assets of $3.2 trillion</span>
-            <p class="mr-4 mt-0" style="color:#89898A;">11/2/20 21:55 </p>
-          </a>
-        </div>
-      </div>
-      <div class="p-2 d-flex mr-3 align-items-center">
-        <div class="d-flex flex-column mr-3" style="width:15%;" >
-          <h3>SeekingAlpha-LONG</h3>
-        </div>
-        <div class="d-flex flex-column" style="width:85%;">
-          <div class="d-flex">
-            <a class="mb-0 mr-3 mat-title" style="text-decoration: none;" routerLink="/ticker-info">AVLR - Avalara, Inc</a>
-            <mat-chip-list aria-label="Fish selection">
-
-              <mat-chip color="primary" selected>98</mat-chip>
-              <span class="mx-2">|</span>
-              <mat-chip color="" >Technology</mat-chip>
-            </mat-chip-list>
-          </div>
-          <a href="www.google.com" style="text-decoration: none;">
-            <h3 style="font-weight: 700; color:#232323;" class="mb-0">BlackLine Q3 Earnings Review</h3>
-            <span style="color:#232323;"></span>
-            <p class="mr-4 mt-0" style="color:#89898A;">11/3/20 14:02 </p>
-          </a>
-        </div>
-      </div>
+        <!-- <h2 class="mb-2">Markets Open</h2> -->
     </div>
+    <div class="d-flex">
 
-    <div class="d-flex flex-grow-1 ml-5">
-      <div class="d-flex flex-column flex-grow-1 mb-4">
-        <mat-card class="mb-4 pt-0 mr-4 pb-0 ">
-          <mat-card-header class="mb-2">
-            <mat-card-title class="mt-3 mb-1">
-              <mat-icon>trending_up</mat-icon>
-              Top Gainers
-            </mat-card-title>
-          </mat-card-header>
-          <app-top-gainers-table></app-top-gainers-table>
-        </mat-card>
-        <mat-card class="mb-4 pt-0 mr-4 pb-0">
-          <mat-card-header class="mb-2">
-            <mat-card-title class="mt-3 mb-1">
-              <mat-icon>trending_down</mat-icon>
-              Top Losers
-            </mat-card-title>
-          </mat-card-header>
-          <app-top-losers-table></app-top-losers-table>
-        </mat-card>
-      </div>
-      <!--<div class="d-flex flex-column flex-grow-1 mb-4 ">-->
-        <!--<mat-card style="width: 100%;" class="mb-4 pt-0 pb-0 mr-4">-->
-          <!--<mat-card-header class="mb-2">-->
-            <!--<mat-card-title class="mt-3 mb-1">-->
-              <!--<mat-icon>stars</mat-icon>-->
-              <!--Favorites-->
-            <!--</mat-card-title>-->
-          <!--</mat-card-header>-->
-          <!--<app-favorites-table></app-favorites-table>-->
-        <!--</mat-card>-->
+        <div class="d-flex flex-column" style="width: 70%;">
+            <h2>
+                <mat-icon>text_snippet</mat-icon> Market News
+            </h2>
+            <div class="p-2 d-flex mr-3 align-items-center" *ngFor="let n of news">
+                <div class="d-flex flex-column mr-3" style="width:15%;">
+                    <p class="mr-4 mt-0" style="color:#89898A;">{{n.datetime | date:'short'}}</p>
+                    <h3>{{parseSource(n.source)}}</h3>
+                </div>
+                <div class="d-flex flex-column" style="width:85%;">
+                    <div class="d-flex">
+                        <a class="mb-0 mr-3 mat-title" style="text-decoration: none;" [ngClass]="{'link': n.ticker}" *ngIf="n.companyName" (click)="navigateToTicker(n.ticker)">{{n.companyName}} <span *ngIf="n.ticker">&nbsp;({{n.ticker}})</span></a>
+                        <mat-chip-list>
+                            <mat-chip *ngIf="n.sentimentCompound" [color]="getSentimentStyle(n.sentimentCompound)" selected>{{getSentimentLabel(n.sentimentCompound)}}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+                    <a style="text-decoration: none;">
+                        <h3 style="font-weight: 700; color:#232323;" class="mb-0">
+                            <a [href]="checkUrl(n.url, n.naturalKey)">{{n.title}}</a>
+                        </h3>
+                        <span style="color:#232323;" [innerHTML]="sanitize(n.description)"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
 
-        <!--<mat-card style="width: 100%;" class="mb-2 pt-0 pb-0 mr-4">-->
-          <!--<mat-card-header class="mb-2">-->
-            <!--<mat-card-title class="mt-3 mb-1">-->
-              <!--<mat-icon>developer_board</mat-icon>-->
-              <!--Sector Overview-->
-            <!--</mat-card-title>-->
-          <!--</mat-card-header>-->
-          <!--<app-sector-overview-table></app-sector-overview-table>-->
-        <!--</mat-card>-->
+        <div class="d-flex flex-grow-1 ml-5">
+            <div class="d-flex flex-column flex-grow-1 mb-4">
+                <mat-card class="mb-4 pt-0 mr-4 pb-0 ">
+                    <mat-card-header class="mb-2">
+                        <mat-card-title class="mt-3 mb-1">
+                            <mat-icon>trending_up</mat-icon>
+                            Top Gainers
+                        </mat-card-title>
+                    </mat-card-header>
+                    <app-top-gainers-table [stocks]="gainers"></app-top-gainers-table>
+                </mat-card>
+                <mat-card class="mb-4 pt-0 mr-4 pb-0">
+                    <mat-card-header class="mb-2">
+                        <mat-card-title class="mt-3 mb-1">
+                            <mat-icon>trending_down</mat-icon>
+                            Top Losers
+                        </mat-card-title>
+                    </mat-card-header>
+                    <app-top-losers-table [stocks]="losers"></app-top-losers-table>
+                </mat-card>
+            </div>
+        </div>
 
-
-      <!--</div>-->
     </div>
-
-  </div>
 </div>
 <app-footer></app-footer>

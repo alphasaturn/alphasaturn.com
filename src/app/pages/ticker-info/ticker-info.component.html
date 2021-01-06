@@ -2,22 +2,23 @@
   <div class="d-flex align-items-start">
     <div class="mr-auto mb-0">
       <div class="d-flex">
-        <h2 class="mat-display-1 mb-2 mr-3"><span style="font-weight: 700;">MYE</span> - Myers Industries, Inc. </h2>
+        <h2 class="mat-display-1 mb-2 mr-3"><span style="font-weight: 700;">{{tickerInfo.companyInfo.symbol}}</span> - {{tickerInfo.companyInfo.name}} </h2>
         <!--<button matTooltip="Set as Favorite" mat-mini-fab color="basic">-->
           <!--<mat-icon>star</mat-icon>-->
         <!--</button>-->
       </div>
 
-      <h4>NASDAQ > Consumer Cyclical</h4>
+      <h4>{{tickerInfo.companyInfo.exchange}} > {{tickerInfo.companyInfo.sector}}</h4>
 
     </div>
     <h2 class="mat-display-1 mb-2">Sentiment Score |
       <div style="display:inline; font-weight: 700;" class="primary-text">
-        52
+        {{(tickerInfo.companySentiment.companyNewsScore * 100).toFixed(2)}}
       </div>
     </h2>
   </div>
-  <div class="d-flex mb-5">
+ <div class="d-flex">
+  <div class="d-flex mb-5" style="width: 500px;">
     <div class="mb-0 mr-3">
       <!--Regular Trading and After hours trading-->
       <div class="d-flex">
@@ -27,23 +28,35 @@
           </mat-card-header>
           <div class="d-flex mb-1">
             <div class="d-flex flex-column mr-auto">
-              <strong class=" mat-headline mb-0">$116.87 <span style="font-size:16px;" class="green-text">+5.44</span></strong>
-              <small style="color:#89898A;">updated 2 mins ago</small>
+              <strong class=" mat-headline mb-0">${{tickerInfo.tickerRealPrice.c}}
+                <span style="font-size:16px;" [ngClass]="{'green-text': tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc > 0, 'red-text': tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc < 0}">
+                  <span *ngIf="tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc > 0">+</span>
+                  <span *ngIf="tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc < 0">-</span>
+                  {{(tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc).toFixed(2)}}</span>
+              </strong>
+              <!--<small style="color:#89898A;">{{tickerInfo.tickerRealPrice.t | date}}</small>-->
             </div>
-            <span class="green-badge align-items-center d-flex" style="font-size: 18px;"><strong><mat-icon>arrow_drop_up</mat-icon>2.4%</strong></span>
+            <span class="green-badge align-items-center d-flex" style="font-size: 18px;">
+              <strong>
+                <mat-icon *ngIf="(tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc) / tickerInfo.tickerRealPrice.pc > 0">arrow_drop_up</mat-icon>
+                <mat-icon *ngIf="(tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc) / tickerInfo.tickerRealPrice.pc < 0">arrow_drop_down</mat-icon>
+                {{((tickerInfo.tickerRealPrice.c - tickerInfo.tickerRealPrice.pc) / tickerInfo.tickerRealPrice.pc * 100).toFixed(2)}}%
+              </strong></span>
           </div>
         </mat-card>
         <!--TODO: Only show After hours trading info below... after the market closes-->
         <mat-card class="mb-2 mr-2 pt-0 flex-fill">
           <mat-card-header class="mb-2">
-            <mat-card-subtitle class="mt-1 mb-1">After Hours Trading</mat-card-subtitle>
+            <mat-card-subtitle class="mt-1 mb-1">Analyst Mean Price</mat-card-subtitle>
           </mat-card-header>
           <div class="d-flex mb-1">
             <div class="d-flex flex-column mr-auto">
-              <strong class=" mat-headline mb-0">$119.09 <span style="font-size:16px;" class="red-text">-2.14</span></strong>
-              <small style="color:#89898A;">updated 2 mins ago</small>
+              <strong class=" mat-headline mb-0">${{tickerInfo.tickerAnalystPrice.targetMean}}
+                <!--<span style="font-size:16px;" class="red-text">-2.14</span>-->
+              </strong>
+              <!--<small style="color:#89898A;">updated 2 mins ago</small>-->
             </div>
-            <span class="red-badge align-items-center d-flex" style="font-size: 18px;"><strong><mat-icon>arrow_drop_down</mat-icon>0.4%</strong></span>
+            <!--<span class="red-badge align-items-center d-flex" style="font-size: 18px;"><strong><mat-icon>arrow_drop_down</mat-icon>0.4%</strong></span>-->
           </div>
         </mat-card>
       </div>
@@ -54,318 +67,229 @@
         <div class="flex-column flex-fill">
           <mat-card class="mb-2 mr-2 flex-fill ">
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Market Cap</strong>
-              <span class="green-badge">$1.95T</span>
+              <strong class="mr-auto">Assets</strong>
+              <span class="green-badge">${{companyFinances.assets | numberSuffix}}</span>
+            </div>
+            <div class="d-flex mb-1 align-items-center">
+              <strong class="mr-auto">Accounts Payable</strong>
+              <span class="green-badge">${{companyFinances.accountsPayable | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
-              <strong class="mr-auto">Enterprise Value</strong>
-              <span class="green-badge">$1.95T</span>
+              <strong class="mr-auto">Cash</strong>
+              <span class="green-badge">${{companyFinances.cash | numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2">
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Revenue</strong>
-              <span class="green-badge">$273.857B</span>
+              <strong class="mr-auto">Accounts Receivable</strong>
+              <span class="green-badge">${{companyFinances.accountsReceivable | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Income</strong>
-              <span class="green-badge">$58.424B</span>
+              <strong class="mr-auto">Net Income</strong>
+              <span class="green-badge">${{companyFinances.netIncome | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Revenue Q/Q</strong>
-              <span class="green-text">10.92%</span>
+              <strong class="mr-auto">Retained Earnings</strong>
+              <span class="green-text">${{companyFinances.retainedEarnings | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
-              <strong class="mr-auto">Revenue Y/Y</strong>
-              <span class="">5.72%</span>
+              <strong class="mr-auto">Stock Holders Equity</strong>
+              <span class="">${{companyFinances.stockholdersEquity | numberSuffix }}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2">
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">P/E</strong>
-              <span class="red-text">35.34</span>
+              <strong class="mr-auto">Marketable Securities</strong>
+              <span class="">${{companyFinances.marketableSecurities | numberSuffix }}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Forward P/E</strong>
-              <span class="red-badge">33.98</span>
+              <strong class="mr-auto">Net Inventory</strong>
+              <span class="">${{companyFinances.inventoryNet | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">EV/Sales</strong>
-              <span class="green-text">6.79</span>
+              <strong class="mr-auto">Non-Trade Receivables</strong>
+              <span class="">${{companyFinances.nontradeReceivablesCurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">PEG</strong>
-              <span class="red-badge">5.72</span>
+              <strong class="mr-auto">Other Assets</strong>
+              <span class="">${{companyFinances.otherAssetsCurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Price/Sales</strong>
-              <span class="red-badge">7.12</span>
+              <strong class="mr-auto">Marketable Securities Non-Current</strong>
+              <span class="">${{companyFinances.marketableSecuritiesNoncurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">P/FCF</strong>
-              <span class="red-badge">5.72</span>
+              <strong class="mr-auto">Property Plant And Equipment</strong>
+              <span class="">${{companyFinances.propertyPlantAndEquipmentNet | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Price/Book</strong>
-              <span class="red-badge">5.72</span>
+              <strong class="mr-auto">Other Assets Non-Current</strong>
+              <span class="">${{companyFinances.otherAssetsNoncurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Book/Share</strong>
-              <span class="red-text">5.44</span>
+              <strong class="mr-auto">Total Non-Current Assets</strong>
+              <span class="">${{companyFinances.assetsNoncurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Cash/Share</strong>
-              <span class="green-badge">6.05</span>
+              <strong class="mr-auto">Other Current Liabilities</strong>
+              <span class="">${{companyFinances.otherLiabilitiesCurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
-              <strong class="mr-auto">FCF yield</strong>
-              <span class="red-text">3.72%</span>
+              <strong class="mr-auto">Deferred Revenue</strong>
+              <span class="">${{companyFinances.contractWithCustomerLiabilityCurrent | numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2">
             <div class="d-flex align-items-center">
               <strong class="mr-auto">Employees</strong>
-              <span class="">137,000</span>
+              <span class="">{{tickerInfo.companyInfo.employees}}</span>
             </div>
           </mat-card>
         </div>
 
         <!--Column Two-->
-        <div class="flex-column flex-fill" style="">
-          <mat-card class="mb-2 mr-2 flex-fill">
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Volume</strong>
-              <span>0.000/</span><span class="green-badge ml-0">95.764M</span>
-            </div>
-            <div class="d-flex align-items-center">
-              <strong class="mr-auto">Relative vol.</strong>
-              <span class="red-badge">0.00</span>
-            </div>
-          </mat-card>
-          <mat-card class="mb-2 mr-2 flex-fill">
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">EPS</strong>
-              <span class="green-badge">3.32</span>
-            </div>
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">EPS Q/Q</strong>
-              <span class="green-badge">-70.64%</span>
-            </div>
-            <div class="d-flex align-items-center">
-              <strong class="mr-auto">Est. EPS Q/Q</strong>
-              <span class="red-text">-6.58%</span>
-            </div>
-          </mat-card>
-          <mat-card class="mb-2 mr-2 flex-fill">
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Profit margin</strong>
-              <span class="green-badge">21.24%</span>
-            </div>
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Oper. margin</strong>
-              <span class="green-text">24.52%</span>
-            </div>
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Gross margin</strong>
-              <span class="">37.82%</span>
-            </div>
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">EBIT margin</strong>
-              <span class="green-badge">24.95%</span>
-            </div>
-            <div class="d-flex align-items-center">
-              <strong class="mr-auto">EBITDA margin</strong>
-              <span class="green-badge">22.95%</span>
-            </div>
-          </mat-card>
-          <mat-card class="mb-2 mr-2 flex-fill">
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Ret. on assets</strong>
-              <span class="green-badge">17.95%</span>
-            </div>
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Ret. on equity</strong>
-              <span class="green-badge">70.66%</span>
-            </div>
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">ROIC</strong>
-              <span class="green-text">18.67%</span>
-            </div>
-            <div class="d-flex align-items-center">
-              <strong class="mr-auto">ROCE</strong>
-              <span class="green-badge">30.95%</span>
-            </div>
-          </mat-card>
-          <mat-card class="mb-2 mr-2 flex-fill">
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Volatility</strong>
-              <span class="red-text">3.65%</span>
-            </div>
-            <div class="d-flex align-items-center">
-              <strong class="mr-auto">Beta</strong>
-              <span class="red-text">1.16</span>
-            </div>
-          </mat-card>
-          <mat-card class="mb-2 mr-2 flex-fill">
-            <div class="d-flex align-items-center">
-              <strong class="mr-auto">RSI</strong>
-              <span class="">51.47</span>
-            </div>
-          </mat-card>
-        </div>
-
-        <!--Column Three-->
         <div class="flex-column flex-fill">
           <mat-card class="mb-2 mr-2 flex-fill">
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Range</strong>
-              <span class="">$115.63 – $118.98</span>
+              <strong class="mr-auto">Commercial Paper</strong>
+              <span class="">${{companyFinances.commercialPaper | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">52 weeks</strong>
-              <span class="">$53.15 – $137.98</span>
+              <strong class="mr-auto">Term Debt</strong>
+              <span class="">${{companyFinances.longTermDebtCurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">SMA 50</strong>
-              <span class="green-text">$116 +0.32%</span>
+              <strong class="mr-auto">Total Current Liabilities</strong>
+              <span class="">${{companyFinances.liabilitiesCurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
-              <strong class="mr-auto">SMA 200</strong>
-              <span class="green-text">$96 +17.39%</span>
+              <strong class="mr-auto">Long Term Debt Non-Current</strong>
+              <span class="">${{companyFinances.longTermDebtNoncurrent | numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2 flex-fill">
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">1 year target</strong>
-              <span class="green-text">$121 +3.57%</span>
+              <strong class="mr-auto">Other Liabilities Non-Current</strong>
+              <span class="">${{companyFinances.otherLiabilitiesNoncurrent | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
-              <strong class="mr-auto">Mean Recomm.</strong>
-              <span class="green-badge">2.05</span>
+              <strong class="mr-auto">Total Non-Current Liabilities</strong>
+              <span class="">${{companyFinances.liabilitiesNoncurrent| numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2 flex-fill">
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Insider ownership</strong>
-              <span class="red-badge">0.07%</span>
+              <strong class="mr-auto">Commitments And Contingencies</strong>
+              <span class="">${{companyFinances.commitmentsAndContingencies | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
-              <strong class="mr-auto">Inst. ownership</strong>
-              <span class="green-text">62.12%</span>
+              <strong class="mr-auto">Retained Earnings</strong>
+              <span class="">${{companyFinances.retainedEarningsAccumulatedDeficit | numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2 flex-fill">
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Shares outst.</strong>
-              <span class="">17.337B</span>
+              <strong class="mr-auto">Depreciation And Amortization</strong>
+              <span class="">${{companyFinances.depreciationDepletionAndAmortization | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Shares float</strong>
-              <span class="">17.321B 99.90%</span>
+              <strong class="mr-auto">Deferred Income Tax Benefit</strong>
+              <span class="">${{companyFinances.deferredIncomeTaxExpenseBenefit | numberSuffix}}</span>
             </div>
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Shares % of float</strong>
-              <span class="green-badge">0.53%</span>
+              <strong class="mr-auto">Other Non-Cash Income Expense</strong>
+              <span class="">${{companyFinances.otherNoncashIncomeExpense | numberSuffix}}</span>
             </div>
             <div class="d-flex align-items-center">
-              <strong class="mr-auto">Short ratio</strong>
-              <span class="green-badge">0.47</span>
+              <strong class="mr-auto">Cash Generated By Operating Activities</strong>
+              <span class="">${{companyFinances.netCashProvidedByUsedInOperatingActivities | numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2 flex-fill">
             <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Dividend</strong>
-              <span class="">$3.18</span>
-            </div>
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Dividend yield</strong>
-              <span class="green-text">2.63%</span>
-            </div>
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Payout ratio</strong>
-              <span class="green-badge">95.78</span>
-            </div>
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Payment date</strong>
-              <span class="">N/A</span>
-            </div>
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">Ex-dividend Date</strong>
-              <span class="">N/A</span>
-            </div>
-            <div class="d-flex align-items-center">
-              <strong class="mr-auto">Earnings date</strong>
-              <span class="green-text">29 Oct 2020</span>
+              <strong class="mr-auto">Investing Activities</strong>
+              <span class="">${{companyFinances.netCashProvidedByUsedInInvestingActivities | numberSuffix}}</span>
             </div>
           </mat-card>
           <mat-card class="mb-2 mr-2 flex-fill">
-            <div class="d-flex mb-1 align-items-center">
-              <strong class="mr-auto">IPO year</strong>
-              <span class="">1980</span>
-            </div>
             <div class="d-flex align-items-center">
               <strong class="mr-auto">Country</strong>
-              <span class="">United States</span>
+              <span class="">{{tickerInfo.companyInfo.country}}</span>
             </div>
 
           </mat-card>
         </div>
       </div>
     </div>
-    <div class="d-flex flex-column flex-fill">
-      <div class="d-flex top-of-chart-row">
-        <mat-card class="d-flex"><div class="d-flex align-items-center">Today<span class="green-badge"><mat-icon>arrow_drop_up</mat-icon>%100</span></div></mat-card>
-        <mat-card><div class="d-flex align-items-center">5 days<span class="red-badge"><mat-icon>arrow_drop_down</mat-icon>%100</span></div></mat-card>
-        <mat-card><div class="d-flex align-items-center">1 month<span class="red-badge"><mat-icon>arrow_drop_down</mat-icon>%100</span></div></mat-card>
-        <mat-card><div class="d-flex align-items-center">3 months<span class="red-badge"><mat-icon>arrow_drop_down</mat-icon>%100</span></div></mat-card>
-        <mat-card><div class="d-flex align-items-center">6 months<span class="red-badge"><mat-icon>arrow_drop_down</mat-icon>%100</span></div></mat-card>
-        <mat-card><div class="d-flex align-items-center">1 year<span class="red-badge"><mat-icon>arrow_drop_down</mat-icon>%100</span></div></mat-card>
-        <mat-card><div class="d-flex align-items-center">5 year<span class="green-badge"><mat-icon>arrow_drop_up</mat-icon>%100</span></div></mat-card>
-        <mat-card><div class="d-flex align-items-center">All Time<span class="green-badge"><mat-icon>arrow_drop_up</mat-icon>%100</span></div></mat-card>
+    <!--<div class="d-flex flex-row flex-fill"  >-->
+      <!--<div class="d-flex top-of-chart-row ">-->
+        <!--<mat-card class="d-flex"><div class="d-flex align-items-center">Today<span class="green-badge"><mat-icon>arrow_drop_up</mat-icon>%100</span></div></mat-card>-->
+        <!--<mat-card><div class="d-flex align-items-center">5 days<span class="red-badge"><mat-icon>arrow_drop_down</mat-icon>%100</span></div></mat-card>-->
+        <!--<mat-card><div class="d-flex align-items-center">1 month<span class="red-badge"><mat-icon>arrow_drop_down</mat-icon>%100</span></div></mat-card>-->
+        <!--<mat-card><div class="d-flex align-items-center">3 months<span class="red-badge"><mat-icon>arrow_drop_down</mat-icon>%100</span></div></mat-card>-->
+        <!--<mat-card><div class="d-flex align-items-center">6 months<span class="red-badge"><mat-icon>arrow_drop_down</mat-icon>%100</span></div></mat-card>-->
+        <!--<mat-card><div class="d-flex align-items-center">1 year<span class="red-badge"><mat-icon>arrow_drop_down</mat-icon>%100</span></div></mat-card>-->
+        <!--<mat-card><div class="d-flex align-items-center">5 year<span class="green-badge"><mat-icon>arrow_drop_up</mat-icon>%100</span></div></mat-card>-->
+        <!--<mat-card><div class="d-flex align-items-center">All Time<span class="green-badge"><mat-icon>arrow_drop_up</mat-icon>%100</span></div></mat-card>-->
+      <!--</div>-->
+
+    <!--</div>-->
+  </div>
+  <div style="width: calc(100% - 500px);">
+    <app-trading-view *ngIf="ticker" [ticker]="ticker"></app-trading-view>
+  </div>
+ </div>
+
+    <div class="d-flex flex-column news-stories" style="width: 80%;">
+      <h2><mat-icon>text_snippet</mat-icon> Company News</h2>
+      <div class="p-2 d-flex mr-3 align-items-center" *ngFor="let latestCompanyNews of tickerInfo.latestCompanyNews">
+        <div class="d-flex flex-column mr-3" style="width:10%;">
+          <h5 style="color:#89898A;">{{latestCompanyNews.source}}</h5>
+        </div>
+        <div class="d-flex flex-column" style="width:90%;">
+          <div class="d-flex align-items-center">
+            <a class="mb-0 mr-3" style="text-decoration: none; font-size: 18px;" [href]="latestCompanyNews.url">{{latestCompanyNews.title}}</a>
+            <span class="mx-2">|</span>
+            <span class="" [ngClass]="calcSentimentColor(latestCompanyNews.sentimentCompound)">{{calcSentimentLabel(latestCompanyNews.sentimentCompound)}}</span>
+          </div>
+          <a href="www.google.com" style="text-decoration: none;">
+            <span style="color:#232323;" [innerHTML]="sanitize(latestCompanyNews.description)"></span>
+            <p class="mr-4 mt-0" style="color:#89898A;">{{latestCompanyNews.datetime | date :'short'}} </p>
+          </a>
+        </div>
+        <hr>
       </div>
-      <app-trading-view></app-trading-view>
+
     </div>
-  </div>
-  <div class="d-flex">
-    <mat-card class="mb-2 mr-2 pt-0 flex-fill">
-      <mat-card-header class="mb-2">
-        <mat-card-title class="mt-3 mb-1"><mat-icon>text_snippet</mat-icon> Company News</mat-card-title>
-        <mat-card-subtitle class="mt-1 mb-1">Monday, 02 November 2020</mat-card-subtitle>
-      </mat-card-header>
-      <div class="p-5">
-        <a class="d-flex mb-1" href="" style="text-decoration: none;">
-          <span class="mr-4" style="color:#89898A; width: 10%;">BusinessWire </span>
-          <span>Myers Industries to Present at the Baird 2020 Global Industrial Conference</span>
-          <mat-chip color="primary" selected>52</mat-chip>
-        </a>
-        <a class="d-flex mb-1" href="" style="text-decoration: none;">
-          <span class="mr-4" style="color:#89898A; width: 10%;">SeekingAlpha-LONG </span>
-          <span>Myers Industries Announces Pricing of $650 Million of Senior Notes Due 2030</span>
-        </a>
-      </div>
-      <mat-card-header class="mb-2">
-        <mat-card-subtitle class="mt-1 mb-1 mr-auto">Monday, 19 October 2020</mat-card-subtitle>
-      </mat-card-header>
-      <div class="p-5">
-        <a class="d-flex mb-1" href="" style="text-decoration: none;">
-          <span class="mr-4" style="color:#89898A; width: 10%;">BusinessWire </span>
-          <span>Myers Industries Reports Third Quarter 2020 Financial Results</span>
-        </a>
-        <a class="d-flex mb-1" href="" style="text-decoration: none;">
-          <span class="mr-4" style="color:#89898A; width: 10%;">SeekingAlpha-CURRENT </span>
-          <span>Myers Industries Announces +16% after showing smashing growth again in Q3</span>
-        </a>
-        <a class="d-flex mb-1" href="" style="text-decoration: none;">
-          <span class="mr-4" style="color:#89898A; width: 10%;">BusinessWire </span>
-          <span>Myers Industries Reports Third Quarter 2020 Results and Announces Quarterly Dividend </span>
-        </a>
-        <a class="d-flex mb-1" href="" style="text-decoration: none;">
-          <span class="mr-4" style="color:#89898A; width: 10%;">SeekingAlpha-LONG </span>
-          <span>Myers Industries to Host Third Quarter 2020 Earnings Conference Call and Webcast at 4:30 PM ET on November 5, 2020</span>
-        </a>
-      </div>
-    </mat-card>
-  </div>
+
+
+  <!--<div class="d-flex" >-->
+    <!--<mat-card class="mb-2 mr-2 pt-0 news-stories">-->
+      <!--<mat-card-header class="mb-2">-->
+        <!--<mat-card-title class="mt-3 mb-1"><mat-icon>text_snippet</mat-icon> Company News</mat-card-title>-->
+      <!--</mat-card-header>-->
+
+
+
+
+      <!--<mat-card-content>-->
+        <!--<div class="" *ngFor="let latestCompanyNews of tickerInfo.latestCompanyNews">-->
+          <!--<a class="d-flex">-->
+            <!--<small class="" style="color:#89898A;">{{latestCompanyNews.source}}</small>-->
+            <!--<span class="mb-1 flex-column">-->
+              <!--<span>-->
+                <!--<a  [href]="latestCompanyNews.url"><strong>{{latestCompanyNews.title}}</strong></a>-->
+                <!--<span class="" style="color: #888;">{{latestCompanyNews.datetime | date :'short'}}</span>-->
+                <!--<span class="" [ngClass]="calcSentimentColor(latestCompanyNews.sentimentCompound)">{{calcSentimentLabel(latestCompanyNews.sentimentCompound)}}</span>-->
+              <!--</span>-->
+              <!--<span [innerHTML]="sanitize(latestCompanyNews.description)"></span>-->
+          <!--</span>-->
+          <!--</a>-->
+        <!--</div>-->
+      <!--</mat-card-content>-->
+
+    <!--</mat-card>-->
+  <!--</div>-->
 </div>
 
 
