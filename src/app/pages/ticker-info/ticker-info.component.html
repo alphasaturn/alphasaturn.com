@@ -16,9 +16,14 @@
       <h4>{{tickerInfo.companyInfo.exchange}} > {{tickerInfo.companyInfo.sector}}</h4>
 
     </div>
-    <h2 class="mat-display-1 mb-2">Company Score 
-      <div style="display:inline; font-weight: 700;" class="primary-text">
-        {{(tickerInfo.companySentiment.companyNewsScore * 100).toFixed(2)}}
+        <h2 class="mat-display-1 mb-2">Company Score
+      <div style="display:inline; font-weight: 700;" [class]="getCompanyScoreClass(tickerInfo?.companySentiment?.companyNewsScore)">
+        <ng-container *ngIf="tickerInfo?.companySentiment?.companyNewsScore && tickerInfo?.companySentiment?.companyNewsScore !== 0">
+            {{(tickerInfo.companySentiment.companyNewsScore * 100).toFixed(2)}}
+        </ng-container>
+        <ng-container *ngIf="!tickerInfo?.companySentiment?.companyNewsScore || tickerInfo?.companySentiment?.companyNewsScore === 0">
+            N/A
+        </ng-container>
       </div>
     </h2>
   </div>

@@ -176,5 +176,17 @@ export class TickerInfoComponent implements OnInit, AfterViewInit {
         return 'gray-badge';
     }
 
+    getCompanyScoreClass(score: number): string {
+        if (!score || score === 0) {
+            return null;
+        } else if (score >= 0.8) {
+            return 'green-text';
+        } else if (score <= 0.5) {
+            return 'red-text';
+        } else {
+            return 'yellow-text';
+        }
+    }
+
 }
 
