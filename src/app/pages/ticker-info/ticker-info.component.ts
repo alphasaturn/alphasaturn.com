@@ -4,6 +4,7 @@ import { TickerDetailsResponse } from 'src/app/generated/models/ticker-details-r
 import { NewsService } from 'src/app/generated/services/news.service';
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import Swal from 'sweetalert2'
+import { UtilService } from 'src/app/lib/util.service';
 
 @Component({
     selector: 'app-ticker-info',
@@ -49,7 +50,7 @@ export class TickerInfoComponent implements OnInit, AfterViewInit {
         cashAndCashEquivalentsAtCarryingValue: null,
     };
 
-    constructor(private activatedRoute: ActivatedRoute, private newsService: NewsService, private sanitizer: DomSanitizer, private elementRef: ElementRef, private router: Router) {
+    constructor(private activatedRoute: ActivatedRoute, private newsService: NewsService, private sanitizer: DomSanitizer, private elementRef: ElementRef, private router: Router, public util: UtilService) {
         if (this.activatedRoute.snapshot.params && this.activatedRoute.snapshot.params.ticker) {
             this.ticker = this.activatedRoute.snapshot.params.ticker;
         }

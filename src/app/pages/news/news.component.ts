@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Finviz } from 'src/app/generated/models/finviz';
 import { News } from 'src/app/generated/models/news';
 import { NewsService } from 'src/app/generated/services/news.service';
+import { UtilService } from 'src/app/lib/util.service';
 
 @Component({
     selector: 'app-news',
@@ -21,7 +22,7 @@ export class NewsComponent implements OnInit {
     page: number = 1;
     loadingMore: boolean = false;
 
-    constructor(private newsService: NewsService, private sanitizer: DomSanitizer, private router: Router, private activatedRoute: ActivatedRoute) {
+    constructor(private newsService: NewsService, private sanitizer: DomSanitizer, private router: Router, private activatedRoute: ActivatedRoute, public util: UtilService) {
 
         this.activatedRoute.queryParams.subscribe(async query => {
             if (query && query.q) {
@@ -97,10 +98,6 @@ export class NewsComponent implements OnInit {
 
     sanitize(description: string): SafeHtml {
         return this.sanitizer.bypassSecurityTrustHtml(description);
-    }
-
-    parseSource(source: string): string {
-        return source.split('-')[0].toUpperCase();
     }
 
     navigateToTicker(ticker: string): void {
