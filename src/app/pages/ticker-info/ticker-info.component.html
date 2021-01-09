@@ -252,6 +252,9 @@
     <div class="d-flex">
         <div class="d-flex flex-column news-stories" style="width: 80%;">
             <h2><mat-icon>text_snippet</mat-icon> Company News</h2>
+            <div class="d-flex flex-column" *ngIf="!loading && (!tickerInfo.latestCompanyNews || !tickerInfo.latestCompanyNews.length)">
+                No news found for this company
+            </div>
             <div class="p-2 d-flex mr-3 align-items-center" *ngFor="let latestCompanyNews of tickerInfo.latestCompanyNews">
               <div class="d-flex flex-column mr-3" style="width:10%;">
                 <h5 style="color:#89898A;">{{util?.parseSource(latestCompanyNews.source)}}</h5>
