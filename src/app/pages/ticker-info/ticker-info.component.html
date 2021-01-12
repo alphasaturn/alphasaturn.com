@@ -13,7 +13,12 @@
         <!--</button>-->
       </div>
 
-      <h4>{{tickerInfo.companyInfo.exchange}} > {{tickerInfo.companyInfo.sector}}</h4>
+      <h4>
+          <ng-container *ngIf="tickerInfo?.companyInfo?.exchange">
+            {{tickerInfo.companyInfo.exchange}} > 
+          </ng-container>
+          {{tickerInfo.companyInfo.sector}}
+        </h4>
 
     </div>
         <h2 class="mat-display-1 mb-2">Company Score
@@ -61,10 +66,16 @@
           </mat-card-header>
           <div class="d-flex mb-1">
             <div class="d-flex flex-column mr-auto">
-              <strong class=" mat-headline mb-0">${{tickerInfo.tickerAnalystPrice.targetMean}}
-                <!--<span style="font-size:16px;" class="red-text">-2.14</span>-->
-              </strong>
-              <!--<small style="color:#89898A;">updated 2 mins ago</small>-->
+                <ng-container *ngIf="tickerInfo.tickerAnalystPrice.targetMean === undefined || tickerInfo.tickerAnalystPrice.targetMean === 0">
+                    <strong class=" mat-headline mb-0">
+                        N/A  
+                    </strong>
+                </ng-container>
+                <ng-container *ngIf="tickerInfo.tickerAnalystPrice.targetMean !== undefined && tickerInfo.tickerAnalystPrice.targetMean !== 0">
+                    <strong class=" mat-headline mb-0">
+                        ${{tickerInfo.tickerAnalystPrice.targetMean}}
+                    </strong>
+                </ng-container>
             </div>
             <!--<span class="red-badge align-items-center d-flex" style="font-size: 18px;"><strong><mat-icon>arrow_drop_down</mat-icon>0.4%</strong></span>-->
           </div>
