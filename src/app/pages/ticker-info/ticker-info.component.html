@@ -59,27 +59,27 @@
               </strong></span>
           </div>
         </mat-card>
-        <!--TODO: Only show After hours trading info below... after the market closes-->
-        <mat-card class="mb-2 mr-2 pt-0 flex-fill">
-          <mat-card-header class="mb-2">
-            <mat-card-subtitle class="mt-1 mb-1">Analyst Average Price</mat-card-subtitle>
-          </mat-card-header>
-          <div class="d-flex mb-1">
-            <div class="d-flex flex-column mr-auto">
-                <ng-container *ngIf="tickerInfo.tickerAnalystPrice.targetMean === undefined || tickerInfo.tickerAnalystPrice.targetMean === 0">
-                    <strong class=" mat-headline mb-0">
-                        N/A  
-                    </strong>
-                </ng-container>
-                <ng-container *ngIf="tickerInfo.tickerAnalystPrice.targetMean !== undefined && tickerInfo.tickerAnalystPrice.targetMean !== 0">
-                    <strong class=" mat-headline mb-0">
-                        ${{tickerInfo.tickerAnalystPrice.targetMean}}
-                    </strong>
-                </ng-container>
-            </div>
-            <!--<span class="red-badge align-items-center d-flex" style="font-size: 18px;"><strong><mat-icon>arrow_drop_down</mat-icon>0.4%</strong></span>-->
-          </div>
-        </mat-card>
+        <!--The code below was removed per josh request as the api moved it to a different price plan.-->
+        <!--<mat-card class="mb-2 mr-2 pt-0 flex-fill">-->
+          <!--<mat-card-header class="mb-2">-->
+            <!--<mat-card-subtitle class="mt-1 mb-1">Analyst Average Price</mat-card-subtitle>-->
+          <!--</mat-card-header>-->
+          <!--<div class="d-flex mb-1">-->
+            <!--<div class="d-flex flex-column mr-auto">-->
+                <!--<ng-container *ngIf="tickerInfo.tickerAnalystPrice.targetMean === undefined || tickerInfo.tickerAnalystPrice.targetMean === 0">-->
+                    <!--<strong class=" mat-headline mb-0">-->
+                        <!--N/A-->
+                    <!--</strong>-->
+                <!--</ng-container>-->
+                <!--<ng-container *ngIf="tickerInfo.tickerAnalystPrice.targetMean !== undefined && tickerInfo.tickerAnalystPrice.targetMean !== 0">-->
+                    <!--<strong class=" mat-headline mb-0">-->
+                        <!--${{tickerInfo.tickerAnalystPrice.targetMean}}-->
+                    <!--</strong>-->
+                <!--</ng-container>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<span class="red-badge align-items-center d-flex" style="font-size: 18px;"><strong><mat-icon>arrow_drop_down</mat-icon>0.4%</strong></span>&ndash;&gt;-->
+          <!--</div>-->
+        <!--</mat-card>-->
       </div>
 
 
