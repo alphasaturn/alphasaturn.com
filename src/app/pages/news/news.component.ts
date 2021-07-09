@@ -61,7 +61,10 @@ export class NewsComponent implements OnInit {
 
     async getNews(source?: string, query?: string, page?: number): Promise<void> {
         try {
-            const news = await this.newsService.newsControllerGetLatestNewsForWebsite({source, query, page}).toPromise();
+            let news = await this.newsService.newsControllerGetLatestNewsForWebsite({source, query, page}).toPromise();
+            news = news.map(n => {
+                return {...n, datetime: n.datetime.replace(/T/g, ' ').replace(/.000Z/g, ' GMT+0400')};
+            })
             if (this.page === 1) {
                 this.news = news;
             } else {
@@ -107,24 +110,6 @@ export class NewsComponent implements OnInit {
             }
             this.router.navigate([`/ticker/${ticker}`]);
         }
-    }
-
-    getSentimentLabel(sentiment: number): string {
-        if (sentiment >= 0.6) {
-            return 'Positive';
-        } else if (sentiment < 0) {
-            return 'Negative';
-        }
-        return 'Neutral';
-    }
-
-    getSentimentStyle(sentiment: number): string {
-        if (sentiment >= 0.6) {
-            return 'primary';
-        } else if (sentiment < 0) {
-            return 'warn';
-        }
-        return 'neutral';
     }
 
 }

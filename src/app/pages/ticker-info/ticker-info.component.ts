@@ -158,23 +158,6 @@ export class TickerInfoComponent implements OnInit, AfterViewInit {
         }
     }
 
-    calcSentimentLabel(sentiment: number): string {
-        if (sentiment >= 0.6) {
-            return 'Positive';
-        } else if (sentiment < 0) {
-            return 'Negative';
-        }
-        return 'Neutral';
-    }
-
-    calcSentimentColor(sentiment: number): string {
-        if (sentiment >= 0.6) {
-            return 'green-badge';
-        } else if (sentiment < 0) {
-            return 'red-badge';
-        }
-        return 'gray-badge';
-    }
 
     getCompanyScoreClass(score: number): string {
         if (!score || score === 0) {

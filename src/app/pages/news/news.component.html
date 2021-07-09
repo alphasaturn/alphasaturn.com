@@ -25,9 +25,6 @@
                 <div class="d-flex flex-column" style="width:85%;">
                     <div class="d-flex">
                         <a class="mb-0 mr-3 mat-title" style="text-decoration: none;" [ngClass]="{'link': n.ticker}" *ngIf="n.companyName" (click)="navigateToTicker(n.ticker)">{{n.companyName}} <span *ngIf="n.ticker">&nbsp;({{n.ticker}})</span></a>
-                        <mat-chip-list>
-                            <mat-chip *ngIf="n.sentimentCompound" [color]="getSentimentStyle(n.sentimentCompound)" selected>{{getSentimentLabel(n.sentimentCompound)}}</mat-chip>
-                        </mat-chip-list>
                     </div>
                     <a style="text-decoration: none;">
                         <h3 style="font-weight: 700; color:#232323;" class="mb-0">
