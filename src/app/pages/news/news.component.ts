@@ -61,10 +61,7 @@ export class NewsComponent implements OnInit {
 
     async getNews(source?: string, query?: string, page?: number): Promise<void> {
         try {
-            let news = await this.newsService.newsControllerGetLatestNewsForWebsite({source, query, page}).toPromise();
-            news = news.map(n => {
-                return {...n, datetime: n.datetime.replace(/T/g, ' ').replace(/.000Z/g, ' GMT+0400')};
-            })
+            const news = await this.newsService.newsControllerGetLatestNewsForWebsite({source, query, page}).toPromise();
             if (this.page === 1) {
                 this.news = news;
             } else {
